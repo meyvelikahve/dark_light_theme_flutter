@@ -3,16 +3,17 @@ import 'package:custom_theme/theme/app_theme_light.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class ThemeNotifier extends ChangeNotifier {
+class ThemeNotifier with ChangeNotifier {
   ThemeData? _currentTheme = AppThemeLight.instance.theme;
   ThemeData? get currentTheme => _currentTheme;
 
-  changeTheme(AppThemes themes) {
-    if (themes == AppThemes.light) {
-      _currentTheme = ThemeData.light();
-    } else {
+  changeTheme() {
+    if (_currentTheme == ThemeData.light()) {
       _currentTheme = ThemeData.dark();
+    } else {
+      _currentTheme = ThemeData.light();
     }
     notifyListeners();
+    print(currentTheme.toString());
   }
 }
